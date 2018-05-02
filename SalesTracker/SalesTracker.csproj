@@ -26,4 +26,12 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\ApplicationUser\" />
+    <Folder Include="Views\Book\" />
+    <Folder Include="Views\Item\" />
+    <Folder Include="Views\Sale\" />
+    <Folder Include="Views\Return\" />
+  </ItemGroup>
+
 </Project>
