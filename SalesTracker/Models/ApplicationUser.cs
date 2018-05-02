@@ -17,5 +17,6 @@ namespace SalesTracker.Models
         public string Role { get; set; }
         public string Name { get; set; }
         public decimal Commission { get; set; }
+        public virtual ICollection<Sale> Sales { get; set; }
     }
 }
