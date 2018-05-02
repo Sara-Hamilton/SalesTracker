@@ -32,5 +32,6 @@ namespace SalesTracker.Models
         public DbSet<Return> Returns { get; set; }
         public DbSet<Sale> Sales { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
     }
 }

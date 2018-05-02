@@ -20,5 +20,22 @@ namespace SalesTracker.Models
         public decimal PreviousTotal { get; set; }
         public decimal CurrentTotal { get; set; }
 
+        public override bool Equals(System.Object otherBook)
+        {
+            if (!(otherBook is Book))
+            {
+                return false;
+            }
+            else
+            {
+                Book newBook = (Book)otherBook;
+                return this.BookId.Equals(newBook.BookId);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.BookId.GetHashCode();
+        }
     }
 }

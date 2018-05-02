@@ -25,5 +25,22 @@ namespace SalesTracker.Models
         public string Comment { get; set; }
         public decimal Commission { get; set; }
 
+        public override bool Equals(System.Object otherReturn)
+        {
+            if (!(otherReturn is Return))
+            {
+                return false;
+            }
+            else
+            {
+                Return newReturn = (Return)otherReturn;
+                return this.ReturnId.Equals(newReturn.ReturnId);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ReturnId.GetHashCode();
+        }
     }
 }

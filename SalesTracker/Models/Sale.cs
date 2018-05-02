@@ -20,5 +20,24 @@ namespace SalesTracker.Models
         public string Comments { get; set; }
         public decimal Commission { get; set; }
         public bool CommissionPaid { get; set; }
+
+        public override bool Equals(System.Object otherSale)
+        {
+            if (!(otherSale is Sale))
+            {
+                return false;
+            }
+            else
+            {
+                Sale newSale = (Sale)otherSale;
+                return this.SaleId.Equals(newSale.SaleId);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.SaleId.GetHashCode();
+        }
     }
+
 }

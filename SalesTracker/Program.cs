@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using SalesTracker.Models;
 
 namespace SalesTracker
@@ -30,8 +31,10 @@ namespace SalesTracker
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception)
+                //catch (Exception ex)
                 {
-
+                    //var logger = services.GetRequiredService<ILogger<Program>>();
+                    //logger.LogError(ex, "An error occurred while seeding the database.");
                 }
             }
 

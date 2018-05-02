@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using System.Security.Claims
+
+<h2>Here is your list of employees, @User.Identity.Name</h2>
+<hr />
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var listUser in Model)
+        {
+            <li>@Html.DisplayFor(modelItem => listUser.Name)</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No employeess have been assigned yet!</p>
+}
+
+@Html.ActionLink("Create new", "Create")

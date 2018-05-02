@@ -27,9 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\ApplicationUser\" />
     <Folder Include="Views\Book\" />
-    <Folder Include="Views\Item\" />
     <Folder Include="Views\Sale\" />
     <Folder Include="Views\Return\" />
   </ItemGroup>
