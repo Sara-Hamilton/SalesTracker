@@ -1,4 +1,4 @@
-@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +35,27 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="Account" asp-action="Index">Accounts</a></li>
+                    <li><a asp-area="" asp-controller="Book" asp-action="Index">Books</a></li>
+                    <li><a asp-area="" asp-controller="Item" asp-action="Index">Items</a></li>
+                    <li><a asp-area="" asp-controller="ApplicationUser" asp-action="Index">Employees</a></li>
+                    <li><a asp-area="" asp-controller="ApplicationUser" asp-action="Manager">Manager</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a asp-area="" asp-controller="" asp-action="">Logout</a></li>
+                        }
+                        else
+                        {
+                        <li><a asp-area="" asp-controller="" asp-action="">Login</a></li>
+
+                        }
+                    }
+                </ul>
+                <ul class="navbar-text nav navbar-nav navbar-right">
+                    <li> Hello @User.Identity.Name</li>
                 </ul>
             </div>
         </div>
