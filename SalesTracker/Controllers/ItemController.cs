@@ -73,10 +73,16 @@ namespace SalesTracker.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult RandomItemsList(int itemCount)
+        public IActionResult TotalInventory()
         {
-            var randomItemList = _db.Items.OrderBy(r => Guid.NewGuid()).Take(itemCount);
-            return Json(randomItemList);
+            var ItemList = _db.Items;
+            return Json(ItemList);
+        }
+
+        public IActionResult NewSale()
+        {
+            var ItemList = _db.Items;
+            return Json(ItemList);
         }
     }
 }

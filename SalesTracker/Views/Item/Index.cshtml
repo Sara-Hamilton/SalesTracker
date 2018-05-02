@@ -18,10 +18,10 @@
                   });
             });
 
-            $('.display-random-database-items').submit(function (event) {
+            $('.display-database-items').submit(function (event) {
                 event.preventDefault();
                     $.ajax({
-                        url: '@Url.Action("RandomItemsList")',
+                        url: '@Url.Action("TotalInventory")',
                         type: 'GET',
                         data: $(this).serialize(),
                         dataType: 'json',
@@ -30,10 +30,32 @@
                             var stringResult = '<ul>';
                             for (var i = 0; i < result.length; i++) {
                             console.log("i " , result[i])
-                                stringResult += '<li>' + result[i].name + ', $' + result[i].itemPrice + '</li>';
+                                stringResult += '<li>' + result[i].name + ', $' + result[i].itemPrice.toFixed(2) + '     qty:' + result[i].stock +'</li>';
                             }
                             stringResult += '</ul>';
-                            $('#itemList').html(stringResult);
+                            $('#inventoryList').html(stringResult);
+                        }
+                    });
+                });
+
+            $('.new-sale').submit(function (event) {
+                event.preventDefault();
+                    $.ajax({
+                        url: '@Url.Action("NewSale")',
+                        type: 'GET',
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success: function (result) {
+                            console.log(result)
+                            var stringResult = '<div>';
+                            stringResult += '<form action="newSale" class="new-sale">'
+                           
+                            for (var i = 0; i < result.length; i++) {
+                            
+                                stringResult += '<div><label for="ItemName" >' + result[i].name + '</label>, <label for="Amount"> $' + result[i].itemPrice.toFixed(2) + '</label>     qty:' + result[i].stock +'</div>';
+                            }
+                            stringResult += '<button type="submit">Submit</button></form></div>';
+                            $('#sale').html(stringResult);
                         }
                     });
                 });
@@ -48,12 +70,20 @@
     <div id="result1"></div>
 
     <h2>Using a form to make a GET request</h2>
-    <form action="RandomItemsList" class="display-random-database-items">
-        <label for="itemCount">How many items would you like to see?</label>
-        <input type="number" name="itemCount" />
+    <form action="TotalInventory" class="display-database-items">
+        <button type="submit">Show Inventory</button>
+    </form>
+    <div id="inventoryList"></div>
+
+    <h2>Submitting data with a POST request</h2>
+    <form action="NewSale" class="new-sale">
+        @*<label for="newCity">City: </label>
+        <input type="text" name="newCity" />
+        <label for="newCountry">Country: </label>
+        <input type="text" name="newCountry" />*@
         <button type="submit">Submit</button>
     </form>
-    <div id="itemList"></div>
+    <div id="sale"></div>
 
 </body>
 </html>

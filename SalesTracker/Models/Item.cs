@@ -15,9 +15,9 @@ namespace SalesTracker.Models
         public int ItemId { get; set; }
         public string Name { get; set; }
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
-        public decimal ItemCost { get; set; }
+        public decimal? ItemCost { get; set; }
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
-        public decimal ItemPrice { get; set; }
+        public decimal? ItemPrice { get; set; }
         public int Stock { get; set; }
 
         public override bool Equals(System.Object otherItem)
