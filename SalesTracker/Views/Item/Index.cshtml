@@ -51,8 +51,8 @@
                             stringResult += '<form action="newSale" class="new-sale">'
                            
                             for (var i = 0; i < result.length; i++) {
-                            
-                                stringResult += '<div><label for="ItemName" >' + result[i].name + '</label>, <label for="Amount"> $' + result[i].itemPrice.toFixed(2) + '</label>     qty:' + result[i].stock +'</div>';
+                   
+                                stringResult += '<div><label for="ItemName" >' + result[i].name + '</label>, <label for="Amount"> $' + result[i].itemPrice.toFixed(2) + '</label>     qty:' + result[i].stock + '<input type="number" name="itemCount" id="' + result[i].itemId + '" /> </div>';
                             }
                             stringResult += '<button type="submit">Submit</button></form></div>';
                             $('#sale').html(stringResult);
