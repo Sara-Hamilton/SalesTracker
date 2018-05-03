@@ -12,14 +12,24 @@ namespace SalesTracker.Models
     {
         [Key]
         public int SaleId { get; set; }
-        public virtual List<Item> Items { get; set; }
+        public virtual ICollection<Item> Items { get; set; }
         public decimal Ammount { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime Date { get; set; }
         public string Comments { get; set; }
         public decimal Commission { get; set; }
         public bool CommissionPaid { get; set; }
+
+        public Sale() { }
+
+        public Sale(List<Item> items, DateTime date, int id = 0)
+        {
+            Items = items;
+            Date = date;
+            SaleId = id;
+        }
 
         public override bool Equals(System.Object otherSale)
         {

@@ -84,5 +84,46 @@ namespace SalesTracker.Controllers
             var ItemList = _db.Items;
             return Json(ItemList);
         }
+
+
+        public IActionResult SalesForm2()
+        {
+            var itemsList = _db.Items.ToList();
+            return View(itemsList);
+        }
+
+        [HttpPost]
+        public IActionResult SalesForm2(int stuff)
+        {
+            var itemCount = Request.Form["itemCount"];
+            var itemId = Request.Form["itemId"];
+
+            return View();
+        }
+
+
+        //[HttpPost]
+        //public IActionResult NewSale(int id, int count, string itemName)
+        //{
+        //    var saleItems = _db.Items.Where(i => i.ItemId == id).ToList();
+        //    var date = DateTime.Now;
+        //    Sale newSale = new Sale(saleItems, date);
+        //    _db.Sales.Add(newSale);
+        //    _db.SaveChanges();
+        //    return Json(newSale);
+
+        //}
+
+        [HttpPost]
+        public IActionResult NewSale(int id, int count, string itemName)
+        {
+            var saleItems = _db.Items.Where(i => i.ItemId == id).ToList();
+            var date = DateTime.Now;
+            Sale newSale = new Sale(saleItems, date);
+            _db.Sales.Add(newSale);
+            _db.SaveChanges();
+            return Json(newSale);
+
+        }
     }
 }

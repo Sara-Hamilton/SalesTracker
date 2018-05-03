@@ -48,16 +48,27 @@
                         success: function (result) {
                             console.log(result)
                             var stringResult = '<div>';
-                            stringResult += '<form action="newSale" class="new-sale">'
+                            stringResult += '<form id="newsale" action="newSale" class="new-sale">'
                            
                             for (var i = 0; i < result.length; i++) {
                    
-                                stringResult += '<div><label for="ItemName" >' + result[i].name + '</label>, <label for="Amount"> $' + result[i].itemPrice.toFixed(2) + '</label>     qty:' + result[i].stock + '<input type="number" name="itemCount" id="' + result[i].itemId + '" /> </div>';
+                                stringResult += '<div><label for="ItemName" >' + result[i].name + '</label>, <label for="Amount"> $' + result[i].itemPrice.toFixed(2) + '</label>     qty:' + result[i].stock + '<input type="number" class="itemCount" id="' + result[i].itemId + '" /> </div>';
                             }
                             stringResult += '<button type="submit">Submit</button></form></div>';
                             $('#sale').html(stringResult);
+                           
                         }
                     });
+            });
+            $('.sales-form-2').click(function () {
+                  $.ajax({
+                    type: 'GET',
+                    dataType: 'html',
+                    url: '@Url.Action("SalesForm2")',
+                    success: function (result) {
+                      $('#sales-form').html(result);
+                    }
+                  });
                 });
 
         });
@@ -71,12 +82,12 @@
 
     <h2>Using a form to make a GET request</h2>
     <form action="TotalInventory" class="display-database-items">
-        <button type="submit">Show Inventory</button>
+        <button type="submit" id="inv-bttn">Show Inventory</button>
     </form>
     <div id="inventoryList"></div>
 
     <h2>Submitting data with a POST request</h2>
-    <form action="NewSale" class="new-sale">
+    <form action="NewSale/Create" class="new-sale">
         @*<label for="newCity">City: </label>
         <input type="text" name="newCity" />
         <label for="newCountry">Country: </label>
@@ -84,6 +95,11 @@
         <button type="submit">Submit</button>
     </form>
     <div id="sale"></div>
+
+
+    <h2>Sales Form 2</h2>
+    <h4 class="sales-form-2">Sales Form</h4>
+    <div id="sales-form"></div>
 
 </body>
 </html>

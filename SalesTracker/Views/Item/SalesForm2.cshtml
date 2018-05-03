@@ -1,0 +1,25 @@
+﻿
+<div id="sales-form-2">
+@using SalesTracker.Models;
+@using (Html.BeginForm())
+{
+    foreach (Item i in Model)
+    {
+        <div>
+            <input type="hidden" name="itemId" value=@i.ItemId/>
+            <label>Item Name :</label>
+            @Html.DisplayFor(modelItem => i.Name)
+            <label>Item Price</label>
+            @Html.DisplayFor(modelItem => i.ItemPrice)
+            <label>Quantity</label>
+            @Html.DisplayFor(modelItem => i.Stock)
+            <input type="number" name="itemCount" />
+        </div>
+    }
+    <button type="submit" id="sale-bttn">Submit</button>
+}
+</div>
+
+
+
+
