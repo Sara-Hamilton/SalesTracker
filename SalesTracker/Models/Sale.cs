@@ -31,6 +31,17 @@ namespace SalesTracker.Models
             SaleId = id;
         }
 
+        public Sale(List<int[]> SalesPairs)
+        {
+            List<Item> items = new List<Item>();
+            for (int i = 0; i < SalesPairs.Count(); i++)
+            {
+
+            }
+
+
+        }
+
         public override bool Equals(System.Object otherSale)
         {
             if (!(otherSale is Sale))
