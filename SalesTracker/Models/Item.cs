@@ -37,6 +37,24 @@ namespace SalesTracker.Models
         {
             return this.ItemId.GetHashCode();
         }
+
+        public List<int[]> SalesPairs(List<string> count, List<string> id)
+        {
+            var Arrays = new List<int[]> { };
+            for(int i = 0; i< count.Count(); i++)
+            {
+                if(count[i] != "")
+                {
+                    var Viewme = Int32.Parse(id[i]);
+                    var newArray = new int [] { Int32.Parse(count[i]), Int32.Parse(id[i]) };
+                    Arrays.Add(newArray);
+                }
+            }
+            return Arrays;
+        }
+
+
+
     }
 
 }

@@ -95,9 +95,10 @@ namespace SalesTracker.Controllers
         [HttpPost]
         public IActionResult SalesForm2(int stuff)
         {
-            var itemCount = Request.Form["itemCount"];
-            var itemId = Request.Form["itemId"];
-
+            List<string> itemCount = Request.Form["itemCount"].ToList();
+            List<string> itemId = Request.Form["itemId"].ToList();
+            var stupidThing = new Item { };
+            var thisThing = stupidThing.SalesPairs(itemCount, itemId);
             return View();
         }
 

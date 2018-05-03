@@ -6,7 +6,7 @@
     foreach (Item i in Model)
     {
         <div>
-            <input type="hidden" name="itemId" value=@i.ItemId/>
+            <input type="hidden" name="itemId" value=@i.ItemId>
             <label>Item Name :</label>
             @Html.DisplayFor(modelItem => i.Name)
             <label>Item Price</label>
