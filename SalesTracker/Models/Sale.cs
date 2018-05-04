@@ -12,7 +12,7 @@ namespace SalesTracker.Models
     {
         [Key]
         public int SaleId { get; set; }
-        public virtual ICollection<Item> Items { get; set; }
+        public string Itemized { get; set; }
         public decimal Ammount { get; set; }
         public string UserId { get; set; }
         public virtual ApplicationUser User { get; set; }
@@ -24,21 +24,36 @@ namespace SalesTracker.Models
 
         public Sale() { }
 
-        public Sale(List<Item> items, DateTime date, int id = 0)
+        public Sale(string items, DateTime date, int id = 0)
         {
-            Items = items;
+            Itemized = items;
             Date = date;
             SaleId = id;
         }
 
-        public Sale(List<int[]> SalesPairs)
+        public Sale(List<dynamic[]> SalesInfo)
         {
-            List<Item> items = new List<Item>();
-            for (int i = 0; i < SalesPairs.Count(); i++)
+            var count = SalesInfo.Count();
+            decimal totalProfit = 0m;
+            decimal totalAmmount = 0m;
+            string itemized = "";
+            DateTime date = DateTime.Now; 
+            for(int i = 0; i< SalesInfo.Count-1; i++)
             {
-
-            }
-
+                var itemCount = SalesInfo[i][0];
+                var itemId = SalesInfo[i][1];
+                var itemPrice = SalesInfo[i][2];
+                var itemCost = SalesInfo[i][3];
+                 totalAmmount += itemCount * itemPrice;
+                totalProfit += (itemPrice - itemCost);
+                itemized += "Item Id: " + itemId + "Cost/Item : " + itemPrice +"/" + itemCount;
+             }
+            Itemized = itemized;
+            Ammount = totalAmmount;
+            Date = date;
+            Comments = SalesInfo[count-1][0];
+            Commission = totalAmmount * 0.5m;
+            CommissionPaid = false;
 
         }
 

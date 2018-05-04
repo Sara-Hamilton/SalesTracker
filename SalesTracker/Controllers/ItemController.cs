@@ -10,8 +10,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 
+
 namespace SalesTracker.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         private readonly ApplicationDbContext _db;
@@ -93,38 +95,25 @@ namespace SalesTracker.Controllers
         }
 
         [HttpPost]
-        public IActionResult SalesForm2(int stuff)
+        public async Task<IActionResult> SalesForm2(int stuff)
         {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _userManager.FindByIdAsync(userId);
+
             List<string> itemCount = Request.Form["itemCount"].ToList();
             List<string> itemId = Request.Form["itemId"].ToList();
+            List<string> itemPrice = Request.Form["itemPrice"].ToList();
+            List<string> itemCost = Request.Form["itemCost"].ToList();
+            string [] comment = Request.Form["comment"];
             var stupidThing = new Item { };
-            var thisThing = stupidThing.SalesPairs(itemCount, itemId);
-            return View();
-        }
-
-
-        //[HttpPost]
-        //public IActionResult NewSale(int id, int count, string itemName)
-        //{
-        //    var saleItems = _db.Items.Where(i => i.ItemId == id).ToList();
-        //    var date = DateTime.Now;
-        //    Sale newSale = new Sale(saleItems, date);
-        //    _db.Sales.Add(newSale);
-        //    _db.SaveChanges();
-        //    return Json(newSale);
-
-        //}
-
-        [HttpPost]
-        public IActionResult NewSale(int id, int count, string itemName)
-        {
-            var saleItems = _db.Items.Where(i => i.ItemId == id).ToList();
-            var date = DateTime.Now;
-            Sale newSale = new Sale(saleItems, date);
+            var thisThing = stupidThing.SalesInfo(itemCount, itemId, itemPrice, itemCost, comment);
+            Sale newSale = new Sale(thisThing);
+            newSale.User = currentUser;
             _db.Sales.Add(newSale);
             _db.SaveChanges();
             return Json(newSale);
-
         }
+
+
     }
 }

@@ -60,6 +60,7 @@
                         }
                     });
             });
+
             $('.sales-form-2').click(function () {
                   $.ajax({
                     type: 'GET',
@@ -70,6 +71,20 @@
                     }
                   });
                 });
+
+            ('.sales-form-submit').submit(function (event) {
+            event.preventDefault();
+            $.ajax({
+                url: '@Url.Action("NewDestination")',
+                type: 'POST',
+                dataType: 'json',
+                data: $(this).serialize(),
+                success: function (result) {
+                    var resultMessage = 'Sucessful Post'
+                    $('#sales-confirm').html(resultMessage);
+                }
+            });
+        });
 
         });
     </script>
@@ -100,6 +115,8 @@
     <h2>Sales Form 2</h2>
     <h4 class="sales-form-2">Sales Form</h4>
     <div id="sales-form"></div>
+
+    <div id="sales-confirm"></div>
 
 </body>
 </html>

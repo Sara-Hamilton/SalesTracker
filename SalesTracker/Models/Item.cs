@@ -38,18 +38,19 @@ namespace SalesTracker.Models
             return this.ItemId.GetHashCode();
         }
 
-        public List<int[]> SalesPairs(List<string> count, List<string> id)
+        public List<dynamic[]> SalesInfo(List<string> count, List<string> id, List<string> price, List<string> cost, string[] comment)
         {
-            var Arrays = new List<int[]> { };
+            var Arrays = new List<dynamic[]> { };
             for(int i = 0; i< count.Count(); i++)
             {
                 if(count[i] != "")
                 {
                     var Viewme = Int32.Parse(id[i]);
-                    var newArray = new int [] { Int32.Parse(count[i]), Int32.Parse(id[i]) };
+                    var newArray = new dynamic [] { Int32.Parse(count[i]), Int32.Parse(id[i]), decimal.Parse(price[i]), decimal.Parse(cost[i])};
                     Arrays.Add(newArray);
                 }
             }
+                Arrays.Add(comment);
             return Arrays;
         }
 
