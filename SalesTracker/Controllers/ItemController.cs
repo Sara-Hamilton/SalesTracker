@@ -111,7 +111,7 @@ namespace SalesTracker.Controllers
             newSale.User = currentUser;
             _db.Sales.Add(newSale);
             _db.SaveChanges();
-            return Json(newSale);
+            return RedirectToAction("Index", "Item", Json(newSale));
         }
 
 

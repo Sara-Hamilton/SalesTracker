@@ -38,44 +38,21 @@
                     });
                 });
 
-            $('.new-sale').submit(function (event) {
-                event.preventDefault();
-                    $.ajax({
-                        url: '@Url.Action("NewSale")',
-                        type: 'GET',
-                        data: $(this).serialize(),
-                        dataType: 'json',
-                        success: function (result) {
-                            console.log(result)
-                            var stringResult = '<div>';
-                            stringResult += '<form id="newsale" action="newSale" class="new-sale">'
-                           
-                            for (var i = 0; i < result.length; i++) {
-                   
-                                stringResult += '<div><label for="ItemName" >' + result[i].name + '</label>, <label for="Amount"> $' + result[i].itemPrice.toFixed(2) + '</label>     qty:' + result[i].stock + '<input type="number" class="itemCount" id="' + result[i].itemId + '" /> </div>';
-                            }
-                            stringResult += '<button type="submit">Submit</button></form></div>';
-                            $('#sale').html(stringResult);
-                           
-                        }
-                    });
-            });
-
             $('.sales-form-2').click(function () {
                   $.ajax({
                     type: 'GET',
                     dataType: 'html',
                     url: '@Url.Action("SalesForm2")',
-                    success: function (result) {
+                      success: function (result) {
                       $('#sales-form').html(result);
                     }
                   });
                 });
 
-            ('.sales-form-submit').submit(function (event) {
+            $('.sales-form-submit').submit(function (event) {
             event.preventDefault();
             $.ajax({
-                url: '@Url.Action("NewDestination")',
+                url: '@Url.Action("SalesForm2")',
                 type: 'POST',
                 dataType: 'json',
                 data: $(this).serialize(),
@@ -113,7 +90,8 @@
 
 
     <h2>Sales Form 2</h2>
-    <h4 class="sales-form-2">Sales Form</h4>
+    <h4 class="sales-form-2"><button>ClickMe</button></h4>
+    
     <div id="sales-form"></div>
 
     <div id="sales-confirm"></div>
