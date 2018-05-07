@@ -31,7 +31,7 @@ This is an Epicodus practice project for week 3 of the .NET course.  Its purpose
 
   * _Clone the github respository_
   ```
-  $ git clone https://github.com/SalesTracker/SalesTracker
+  $ git clone https://github.com/Sara-Hamilton/SalesTracker
   ```
 
   * _Install the .NET Framework and MAMP_
